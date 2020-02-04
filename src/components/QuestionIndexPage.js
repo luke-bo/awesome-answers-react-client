@@ -13,8 +13,8 @@ export const QuestionIndexPage = props => {
         }}
       >
         {data.map(question => (
-          <li key={question.id} style={{ padding: "0.2em" }} href="">
-            {question.title}
+          <li key={question.id} style={{ padding: "0.2em" }}>
+            <a href="">{question.title}</a>
           </li>
         ))}
       </ul>
