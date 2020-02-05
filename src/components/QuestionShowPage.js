@@ -19,17 +19,7 @@ class QuestionShowPage extends Component {
     debugger;
     return (
       <div className="Page">
-        <QuestionDetails
-          // verbose way to explicitly pass each prop
-          // id={this.state.}
-          // title={this.state.question.title}
-          // body={this.state.question.body}
-          // author={this.state.question.author}
-          // view_count={this.state.question.view_count}
-          // created_at={this.state.question.created_at}
-          // destructuring syntax sugar
-          {...this.state.question}
-        />
+        <QuestionDetails {...this.state.question} />
         <AnswerList answers={this.state.question.answers} />
       </div>
     );
