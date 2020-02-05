@@ -5,10 +5,10 @@ import { QuestionIndexPage } from "./QuestionIndexPage";
 
 const App = () => {
   return (
-    <>
-      <QuestionShowPage />
+    <div className="app-wrapper">
       <QuestionIndexPage />
-    </>
+      <QuestionShowPage />
+    </div>
   );
 };
 
