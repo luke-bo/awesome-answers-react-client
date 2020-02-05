@@ -2,8 +2,8 @@ import React from "react";
 
 export const QuestionDetails = props => {
   return (
-    <div>
-      <h2>{props.title}</h2>
+    <div className="ui segment">
+      <h2 className="ui header">{props.title}</h2>
       <p>
         {props.body} <br />
         By {props.author.full_name}
