@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import NewQuestionForm from "./NewQuestionForm";
 import { Question } from "../api/question";
+import { Spinner } from "./Spinner";
 
 export class QuestionIndexPage extends Component {
   constructor(props) {
@@ -13,7 +14,8 @@ export class QuestionIndexPage extends Component {
       // a new array that is stored in the state
       // of this component, as the state's questions field
       // questions: data.map(question => question)
-      questions: []
+      questions: [],
+      isLoading: true
     };
 
     // this.createQuestion = this.createQuestion.bind(this);
@@ -58,11 +60,14 @@ export class QuestionIndexPage extends Component {
 
   componentDidMount() {
     Question.all().then(questions => {
-      this.setState({ questions });
+      this.setState({ questions, isLoading: false });
     });
   }
 
   render() {
+    if (this.state.isLoading) {
+      return <Spinner message="Wait to load the list of questions" />;
+    }
     return (
       <main>
         <NewQuestionForm onCreateQuestion={this.createQuestion} />

@@ -4,6 +4,7 @@ import "./css/QuestionShowPage.css";
 import { QuestionDetails } from "./QuestionDetails";
 import { AnswerList } from "./AnswerList";
 import { Question } from "../api/question";
+import { Spinner } from "./Spinner";
 
 class QuestionShowPage extends Component {
   constructor(props) {
@@ -12,7 +13,8 @@ class QuestionShowPage extends Component {
     // constructor with 'super' passing it the 'props'
     super(props);
     this.state = {
-      question: null
+      question: null,
+      isLoading: true
     };
   }
 
@@ -46,17 +48,13 @@ class QuestionShowPage extends Component {
     //   }
     // }
     Question.one(this.props.match.params.id).then(question => {
-      this.setState({ question });
+      this.setState({ question, isLoading: false });
     });
   }
 
   render() {
-    if (!this.state.question) {
-      return (
-        <div className="Page">
-          <h3 className="ui red header">Question doesn't exist</h3>
-        </div>
-      );
+    if (this.state.isLoading) {
+      return <Spinner message="Question doesn't exist" />;
     }
     return (
       <div className="Page">
