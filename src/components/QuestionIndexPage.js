@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 import NewQuestionForm from "./NewQuestionForm";
 import { Question } from "../api/question";
@@ -69,9 +70,13 @@ export class QuestionIndexPage extends Component {
         <ul className="ui list">
           {this.state.questions.map(question => (
             <li className="item" key={question.id}>
-              <a className="ui link" href="">
+              <Link
+                to={`/questions/${question.id}`}
+                className="ui link"
+                href=""
+              >
                 {question.title}
-              </a>
+              </Link>
               <button
                 className="ui small right floated red button"
                 onClick={() => this.deleteQuestion(question.id)}

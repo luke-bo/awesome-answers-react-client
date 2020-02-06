@@ -32,7 +32,20 @@ class QuestionShowPage extends Component {
   }
 
   componentDidMount() {
-    Question.one(28).then(question => {
+    // All components that are rendered by a <Route> component
+    // (like QuestionShowPage) will be given props by that
+    // route component. One of these props called "match", which
+    // contains information related to the pattern matched path
+    // defined in App.js
+    // <Route path="/questions/:id/:test/:something" component={QuestionShowPage} />
+    // match: {
+    //   params: {
+    //     id: <whatever-id-is>,
+    //     test: <whatever-test-is>,
+    //     something: <whatever-something-is>
+    //   }
+    // }
+    Question.one(this.props.match.params.id).then(question => {
       this.setState({ question });
     });
   }
@@ -64,3 +77,4 @@ class QuestionShowPage extends Component {
 }
 
 export default QuestionShowPage;
+
