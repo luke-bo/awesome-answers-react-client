@@ -23,12 +23,15 @@ export class SignInPage extends Component {
       email: fd.get("email"),
       password: fd.get("password")
     }).then(data => {
-      if (data.status === 401) {
+      if (data.status === 404) {
         this.setState({
           errors: [{ message: "Wrong Email or Password" }]
         });
       } else {
         this.props.history.push("/");
+        if (typeof this.props.onSignIn === "function") {
+          this.props.onSignIn();
+        }
       }
     });
   }
@@ -49,11 +52,11 @@ export class SignInPage extends Component {
           )}
           <div className="field">
             <label htmlFor="email">Email</label>
-            <input type="email" name="email" id="email" />
+            <input type="email" name="email" id="email" required />
           </div>
           <div className="field">
             <label htmlFor="password">Password</label>
-            <input type="password" name="password" id="password" />
+            <input type="password" name="password" id="password" required />
           </div>
 
           <input
